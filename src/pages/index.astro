@@ -179,7 +179,10 @@ import Layout from "../layouts/Layout.astro";
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <p class="copyright">© 2025 Pinecode. Alla rättigheter förbehållna.</p>
+      <div class="footer-content">
+        <img src="/pinecode2.png" alt="Pinecode Logo" class="footer-logo" />
+        <p class="copyright">© 2025 Pinecode. Alla rättigheter förbehållna.</p>
+      </div>
     </div>
   </footer>
 </Layout>
@@ -559,12 +562,9 @@ import Layout from "../layouts/Layout.astro";
   }
 
   .navbar-logo {
-    height: 3.5rem;
-    width: 3.5rem;
+    height: 2.5rem;
+    width: auto;
     object-fit: contain;
-    background: #22c55e;
-    border-radius: 50%;
-    padding: 0.5rem;
   }
 
   .navbar-nav {
@@ -592,8 +592,21 @@ import Layout from "../layouts/Layout.astro";
     text-align: center;
   }
 
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
   .footer p {
     margin: 0;
+  }
+
+  .footer-logo {
+    height: 2rem;
+    width: auto;
+    object-fit: contain;
   }
 
   .copyright {
