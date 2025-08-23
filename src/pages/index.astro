@@ -170,8 +170,8 @@ import Layout from "../layouts/Layout.astro";
   <section id="kontakt" class="section cta-section">
     <div class="container">
       <h2>Kontakta oss</h2>
-      <a href="mailto:info@pinecode.se" class="contact-email"
-        >info@pinecode.se</a
+      <a href="mailto:hej@pinecode.studio" class="contact-email"
+        >hej@pinecode.studio</a
       >
     </div>
   </section>
@@ -180,8 +180,13 @@ import Layout from "../layouts/Layout.astro";
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
-        <img src="/pinecode2.png" alt="Pinecode Logo" class="footer-logo" />
-        <p class="copyright">© 2025 Pinecode. Alla rättigheter förbehållna.</p>
+        <p class="copyright">
+          Made with <img
+            src="/pinecode2.png"
+            alt="Pinecode Logo"
+            class="inline-logo"
+          /> by Pinecode 2025.
+        </p>
       </div>
     </div>
   </footer>
@@ -610,9 +615,21 @@ import Layout from "../layouts/Layout.astro";
     object-fit: contain;
   }
 
+  .inline-logo {
+    height: 1rem;
+    width: auto;
+    object-fit: contain;
+    vertical-align: middle;
+    margin: 0 0.25rem;
+  }
+
   .copyright {
     font-size: 0.875rem;
     color: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
   }
 
   @media (max-width: 768px) {
