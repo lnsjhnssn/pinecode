@@ -4,11 +4,13 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout>
   <!-- Navigation -->
-  <nav class="navbar">
+  <nav class="navbar fade-in">
     <div class="container navbar-content">
       <div class="navbar-brand">
-        <img src="/pinecode2.png" alt="Pinecode Logo" class="navbar-logo" />
-        Pinecode
+        <a href="#" class="navbar-brand-link">
+          <img src="/pinecode2.png" alt="Pinecode Logo" class="navbar-logo" />
+          Pinecode
+        </a>
       </div>
       <ul class="navbar-nav">
         <li><a href="#tjanster">Tjänster</a></li>
@@ -19,7 +21,7 @@ import Layout from "../layouts/Layout.astro";
   </nav>
 
   <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero fade-in">
     <div class="container hero-content">
       <h1>Vi designar och utvecklar webbplatser</h1>
       <p>
@@ -35,7 +37,7 @@ import Layout from "../layouts/Layout.astro";
   </section>
 
   <!-- Services Section -->
-  <section id="tjanster" class="section section-alt">
+  <section id="tjanster" class="section section-alt fade-in">
     <div class="container">
       <h2>Våra tjänster</h2>
       <p class="section-subtitle">
@@ -75,7 +77,7 @@ import Layout from "../layouts/Layout.astro";
   </section>
 
   <!-- Process Section -->
-  <section id="process" class="section">
+  <section id="process" class="section fade-in">
     <div class="container">
       <h2>Så arbetar vi</h2>
       <p class="section-subtitle">
@@ -122,7 +124,7 @@ import Layout from "../layouts/Layout.astro";
   </section>
 
   <!-- Pricing Section -->
-  <section class="section section-alt">
+  <section class="section section-alt fade-in">
     <div class="container">
       <div class="pricing-layout">
         <div class="pricing-text">
@@ -152,7 +154,7 @@ import Layout from "../layouts/Layout.astro";
   </section>
 
   <!-- Contact Section -->
-  <section id="kontakt" class="section cta-section">
+  <section id="kontakt" class="section cta-section fade-in">
     <div class="container">
       <h2>Kontakta oss</h2>
       <a href="mailto:hej@pinecode.studio" class="contact-email"
@@ -162,7 +164,7 @@ import Layout from "../layouts/Layout.astro";
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
+  <footer class="footer fade-in">
     <div class="container">
       <div class="footer-content">
         <p class="copyright">
@@ -176,6 +178,41 @@ import Layout from "../layouts/Layout.astro";
     </div>
   </footer>
 </Layout>
+
+<script>
+  // Smooth intro animation
+  document.addEventListener("DOMContentLoaded", function () {
+    // Trigger animations after a short delay
+    setTimeout(function () {
+      const fadeElements = document.querySelectorAll(".fade-in");
+      fadeElements.forEach(function (element) {
+        element.classList.add("visible");
+      });
+    }, 100);
+  });
+
+  // Intersection Observer for scroll-triggered animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  };
+
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  }, observerOptions);
+
+  // Observe all fade-in elements
+  document.addEventListener("DOMContentLoaded", function () {
+    const fadeElements = document.querySelectorAll(".fade-in");
+    fadeElements.forEach(function (element) {
+      observer.observe(element);
+    });
+  });
+</script>
 
 <style>
   :root {
@@ -210,6 +247,49 @@ import Layout from "../layouts/Layout.astro";
   #process,
   #kontakt {
     scroll-margin-top: 6rem;
+  }
+
+  /* Smooth intro animations */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+      opacity 0.8s ease-out,
+      transform 0.8s ease-out;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stagger animations for different sections */
+  .navbar.fade-in {
+    transition-delay: 0.1s;
+  }
+
+  .hero.fade-in {
+    transition-delay: 0.2s;
+  }
+
+  #tjanster.fade-in {
+    transition-delay: 0.3s;
+  }
+
+  #process.fade-in {
+    transition-delay: 0.4s;
+  }
+
+  .section-alt.fade-in {
+    transition-delay: 0.5s;
+  }
+
+  #kontakt.fade-in {
+    transition-delay: 0.6s;
+  }
+
+  .footer.fade-in {
+    transition-delay: 0.7s;
   }
 
   body {
@@ -557,6 +637,19 @@ import Layout from "../layouts/Layout.astro";
     display: flex;
     align-items: center;
     gap: 0.75rem;
+  }
+
+  .navbar-brand-link {
+    color: var(--text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: opacity 0.2s ease;
+  }
+
+  .navbar-brand-link:hover {
+    color: var(--text);
   }
 
   .navbar-logo {
